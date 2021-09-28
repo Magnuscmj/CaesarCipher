@@ -1,5 +1,7 @@
 package com.ComputasHomeTask;
 
+import java.util.Scanner;
+
 public class CaesarCipher {
 
     static String alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -10,7 +12,7 @@ public class CaesarCipher {
 
         for (int i = 0; i < plainText.length(); i++) {
             int charIndex = alphabet.indexOf(plainText.charAt(i));
-            int newIndex = (charIndex + Key) % 26;
+            int newIndex = ( charIndex + Key ) % 26;
             char chipherChar = alphabet.charAt(newIndex);
             chiperText.append(chipherChar);
         }
@@ -23,12 +25,12 @@ public class CaesarCipher {
         StringBuilder plainText = new StringBuilder(" ");
 
         for (int i = 0; i < chiperText.length(); i++) {
-        int charIndex = alphabet.indexOf(chiperText.charAt(i));
-        int newIndex = (charIndex - Key) % 26;
-        if (newIndex < 0 ) {
+        int charIndex = alphabet.indexOf( chiperText.charAt(i) );
+        int newIndex = ( charIndex - Key ) % 26;
+        if ( newIndex < 0 ) {
             newIndex = alphabet.length() + newIndex;
         }
-        char plainChar = alphabet.charAt(newIndex);
+        char plainChar = alphabet.charAt( newIndex );
         plainText.append(plainChar);
         }
 
@@ -38,6 +40,17 @@ public class CaesarCipher {
 
 
     public static void main(String[] args) {
-	// write your code here
+	    //This how we can interact with the program
+        Scanner scan = new Scanner( System.in );
+        //allows the user to type with "spaces"
+        System.out.print( "Enter plain text: " );
+        String plainText = scan.nextLine();
+
+        System.out.print( "Enter Key: " );
+        int Key = scan.nextInt();
+
+        String chiperText = encoding( plainText, Key );
+
+        System.out.println("The chipher text: " + chiperText);
     }
 }
