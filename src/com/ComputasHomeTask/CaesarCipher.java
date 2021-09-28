@@ -1,5 +1,7 @@
 package com.ComputasHomeTask;
-import java.util.Scanner;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.Scanner; // Import the Scanner class to read text files
 
 
 public class CaesarCipher {
@@ -7,6 +9,8 @@ public class CaesarCipher {
     static String alphabet = "abcdefghijklmnopqrstuvwxyzæøå";
 
     public static String encoding(String plainText, int Key) {
+
+        //We make chiperText a Method
         plainText = plainText.toLowerCase();
         StringBuilder chiperText = new StringBuilder();
 
@@ -21,11 +25,12 @@ public class CaesarCipher {
     }
 
 
-    public static String decoding(String chiperText, int Key) {
+    public static String decoding(String chipherText, int Key) {
         StringBuilder plainText = new StringBuilder(" ");
 
-        for (int i = 0; i < chiperText.length(); i++) {
-            int charIndex = alphabet.indexOf(chiperText.charAt(i));
+        //Looping trough cipherText reversing the process above
+        for (int i = 0; i < chipherText.length(); i++) {
+            int charIndex = alphabet.indexOf(chipherText.charAt(i));
             int newIndex = (charIndex - Key) % 29;
 
         if (newIndex < 0) {
@@ -39,20 +44,35 @@ public class CaesarCipher {
 
     public static void main(String[] args) {
 
-	    // Import of the scanner and the input stream
-        Scanner scan = new Scanner(System.in);
+        String data = null;
+        try {
+            File myObj = new File("filename.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                data = myReader.nextLine();
+                System.out.println("Load text file:" + data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
-        // Gives the user access to the plain text input
+
+        //Import of the scanner and the input stream
+        Scanner scan = new Scanner(System.in);
+/*
+        //Gives the user access to the plain text input
         System.out.print("Enter plain text:");
         String plain = scan.nextLine();
-
-        // Input for the number of times they wish to switch
+*/
+        //Input for the number of times they wish to switch
         System.out.print("Enter number of switches:");
         int Key = scan.nextInt();
 
-        // Prints out the encrypted message and decrypts it again
-        String chiperText = encoding(plain, Key);
-        System.out.println("The chipher text: " + chiperText);
+        //Prints out the encrypted message and decrypts it again
+        String chiperText = encoding(data, Key);
+        System.out.println("The cipher text: " + chiperText);
         System.out.println("The decoded message is:" + decoding(chiperText, Key));
     }
 }
