@@ -10,12 +10,10 @@ public class CaesarCipher {
 
     public static String encoding(String plainText, int Key) {
 
-        //We make chiperText a Method
-        plainText = plainText.toLowerCase();
+        plainText = plainText.toLowerCase();  //We make chiperText a Method
         StringBuilder chiperText = new StringBuilder();
 
-        //Loop trough plainText to find matches in the alphabet String
-        for (int i = 0; i < plainText.length(); i++) {
+        for (int i = 0; i < plainText.length(); i++) {  //Loop trough plainText to find matches in the alphabet String
             int charIndex = alphabet.indexOf(plainText.charAt(i));
             int newIndex = (charIndex + Key) % 29;
             char chipherChar = alphabet.charAt(newIndex);
@@ -28,8 +26,7 @@ public class CaesarCipher {
     public static String decoding(String chipherText, int Key) {
         StringBuilder plainText = new StringBuilder(" ");
 
-        //Looping trough cipherText reversing the process above
-        for (int i = 0; i < chipherText.length(); i++) {
+        for (int i = 0; i < chipherText.length(); i++) {  //Looping trough cipherText reversing the process above
             int charIndex = alphabet.indexOf(chipherText.charAt(i));
             int newIndex = (charIndex - Key) % 29;
 
@@ -44,8 +41,8 @@ public class CaesarCipher {
 
     public static void main(String[] args) {
 
-        //Reads the String of "message.txt" file
-        String data = null;
+        String data = null; //Reads the String of "message.txt" file
+
         try {
             File myObj = new File("message.txt");
             Scanner myReader = new Scanner(myObj);
@@ -59,15 +56,11 @@ public class CaesarCipher {
             e.printStackTrace();
         }
 
-        //Import of the scanner and the input stream
-        Scanner scan = new Scanner(System.in);
-
-        //Input for the number of times they wish to switch
-        System.out.print("Enter number of switches: ");
+        Scanner scan = new Scanner(System.in);   //Import of the scanner and the input stream
+        System.out.print("Enter number of switches: "); //Input for the number of times they wish to switch
         int Key = scan.nextInt();
 
-        //Prints out the encrypted message and decrypts it again
-        String chiperText = encoding(data, Key);
+        String chiperText = encoding(data, Key); //Prints out the encrypted message and decrypts it again
         System.out.println("The cipher text: " + chiperText);
         System.out.println("The decoded message is:" + decoding(chiperText, Key));
     }
