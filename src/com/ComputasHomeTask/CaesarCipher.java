@@ -1,6 +1,6 @@
 package com.ComputasHomeTask;
-
 import java.util.Scanner;
+
 
 public class CaesarCipher {
 
@@ -10,13 +10,13 @@ public class CaesarCipher {
         plainText = plainText.toLowerCase();
         StringBuilder chiperText = new StringBuilder();
 
+        //Loop trough plainText to find matches in the alphabet String
         for (int i = 0; i < plainText.length(); i++) {
             int charIndex = alphabet.indexOf(plainText.charAt(i));
             int newIndex = (charIndex + Key) % 29;
             char chipherChar = alphabet.charAt(newIndex);
             chiperText.append(chipherChar);
         }
-
         return chiperText.toString();
     }
 
@@ -25,18 +25,17 @@ public class CaesarCipher {
         StringBuilder plainText = new StringBuilder(" ");
 
         for (int i = 0; i < chiperText.length(); i++) {
-        int charIndex = alphabet.indexOf(chiperText.charAt(i));
-        int newIndex = (charIndex - Key) % 29;
+            int charIndex = alphabet.indexOf(chiperText.charAt(i));
+            int newIndex = (charIndex - Key) % 29;
+
         if (newIndex < 0) {
-                newIndex = alphabet.length() + newIndex;
+            newIndex = alphabet.length() + newIndex;
         }
         char plainChar = alphabet.charAt(newIndex);
-        plainText.append(plainChar);
+            plainText.append(plainChar);
         }
-
         return plainText.toString();
     }
-
 
     public static void main(String[] args) {
 
@@ -53,7 +52,7 @@ public class CaesarCipher {
 
         // Prints out the encrypted message and decrypts it again
         String chiperText = encoding(plain, Key);
-        System.out.println("The chipher text:" + chiperText);
+        System.out.println("The chipher text: " + chiperText);
         System.out.println("The decoded message is:" + decoding(chiperText, Key));
     }
 }
