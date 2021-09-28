@@ -44,7 +44,7 @@ public class CaesarCipher {
         Scanner scan = new Scanner( System.in );
         //allows the user to type with "spaces"
         System.out.print( "Enter plain text: " );
-        String plainText = scan.nextLine();
+        String plainText = scan.next();
 
         System.out.print( "Enter Key: " );
         int Key = scan.nextInt();
@@ -52,5 +52,7 @@ public class CaesarCipher {
         String chiperText = encoding( plainText, Key );
 
         System.out.println("The chipher text: " + chiperText);
+
+        System.out.println("The decoded message is: " + decoding(chiperText, Key));
     }
 }
