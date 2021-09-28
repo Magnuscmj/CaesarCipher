@@ -14,17 +14,25 @@ public class CaesarCipher {
             char chipherChar = alphabet.charAt(newIndex);
             chiperText.append(chipherChar);
         }
+
         return chiperText.toString();
     }
 
 
     public static String decoding(String chiperText, int Key) {
-        String plainText = " ";
+        StringBuilder plainText = new StringBuilder(" ");
 
         for (int i = 0; i < chiperText.length(); i++) {
         int charIndex = alphabet.indexOf(chiperText.charAt(i));
         int newIndex = (charIndex - Key) % 26;
+        if (newIndex < 0 ) {
+            newIndex = alphabet.length() + newIndex;
+        }
+        char plainChar = alphabet.charAt(newIndex);
+        plainText.append(plainChar);
+        }
 
+        return plainText.toString();
     }
 
 
