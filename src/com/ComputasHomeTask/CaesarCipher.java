@@ -44,13 +44,14 @@ public class CaesarCipher {
 
     public static void main(String[] args) {
 
+        //Reads the String of "message.txt" file
         String data = null;
         try {
-            File myObj = new File("filename.txt");
+            File myObj = new File("message.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 data = myReader.nextLine();
-                System.out.println("Load text file:" + data);
+                System.out.println("message.txt: " + data);
             }
             myReader.close();
         } catch (FileNotFoundException e) {
@@ -58,16 +59,11 @@ public class CaesarCipher {
             e.printStackTrace();
         }
 
-
         //Import of the scanner and the input stream
         Scanner scan = new Scanner(System.in);
-/*
-        //Gives the user access to the plain text input
-        System.out.print("Enter plain text:");
-        String plain = scan.nextLine();
-*/
+
         //Input for the number of times they wish to switch
-        System.out.print("Enter number of switches:");
+        System.out.print("Enter number of switches: ");
         int Key = scan.nextInt();
 
         //Prints out the encrypted message and decrypts it again
