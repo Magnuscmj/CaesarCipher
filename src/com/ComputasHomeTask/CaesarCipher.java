@@ -1,7 +1,7 @@
 package com.ComputasHomeTask;
-import java.io.File;  // Import the File class
+import java.io.File;                   // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.util.Scanner; // Import the Scanner class to read text files
+import java.util.Scanner;              // Import the Scanner class to read text files
 
 
 public class CaesarCipher {
@@ -9,13 +9,12 @@ public class CaesarCipher {
     static String alphabet = "abcdefghijklmnopqrstuvwxyzæøå";
 
     public static String encoding(String plainText, int Key) {
+        plainText = plainText.toLowerCase();                        
+        StringBuilder chiperText = new StringBuilder();             // We make chiperText a Method
 
-        plainText = plainText.toLowerCase();  //We make chiperText a Method
-        StringBuilder chiperText = new StringBuilder();
-
-        for (int i = 0; i < plainText.length(); i++) {  //Loop trough plainText to find matches in the alphabet String
-            int charIndex = alphabet.indexOf(plainText.charAt(i));
-            int newIndex = (charIndex + Key) % 29;
+        for (int i = 0; i < plainText.length(); i++) {              // Loops trough plainText to find matches in the alphabet String
+            int charIndex = alphabet.indexOf(plainText.charAt(i));  // Loops through the index of both plain text and the alphabet String
+            int newIndex = (charIndex + Key) % 29;                  // "% 29" gives Key a value between 0 and 29 we can access
             char chipherChar = alphabet.charAt(newIndex);
             chiperText.append(chipherChar);
         }
@@ -24,9 +23,9 @@ public class CaesarCipher {
 
 
     public static String decoding(String chipherText, int Key) {
-        StringBuilder plainText = new StringBuilder(" ");
+        StringBuilder plainText = new StringBuilder();
 
-        for (int i = 0; i < chipherText.length(); i++) {  //Looping trough cipherText reversing the process above
+        for (int i = 0; i < chipherText.length(); i++) {    //Looping trough cipherText reversing the process above
             int charIndex = alphabet.indexOf(chipherText.charAt(i));
             int newIndex = (charIndex - Key) % 29;
 
@@ -56,11 +55,11 @@ public class CaesarCipher {
             e.printStackTrace();
         }
 
-        Scanner scan = new Scanner(System.in);   //Import of the scanner and the input stream
-        System.out.print("Enter number of switches: "); //Input for the number of times they wish to switch
+        Scanner scan = new Scanner(System.in);          // Import of the scanner and the input stream
+        System.out.print("Enter number of switches: "); // Input for the number of times they wish to switch
         int Key = scan.nextInt();
 
-        String chiperText = encoding(data, Key); //Prints out the encrypted message and decrypts it again
+        String chiperText = encoding(data, Key);        // Prints out the encrypted message and decrypts it again
         System.out.println("The cipher text: " + chiperText);
         System.out.println("The decoded message is:" + decoding(chiperText, Key));
     }
